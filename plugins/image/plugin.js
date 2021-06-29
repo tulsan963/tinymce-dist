@@ -1116,13 +1116,17 @@ var image = (function (domGlobals) {
           };
         }
         if (Settings.hasAdvTab(editor) || Settings.hasUploadUrl(editor) || Settings.hasUploadHandler(editor)) {
-          var body = [MainTab.makeTab(editor, imageListCtrl)];
-          if (Settings.hasAdvTab(editor)) {
-            body.push(AdvTab.makeTab(editor));
-          }
+          var body = []
           if (Settings.hasUploadUrl(editor) || Settings.hasUploadHandler(editor)) {
             body.push(UploadTab.makeTab(editor));
           }
+          body.push(MainTab.makeTab(editor, imageListCtrl));
+          if (Settings.hasAdvTab(editor)) {
+            body.push(AdvTab.makeTab(editor));
+          }
+          // if (Settings.hasUploadUrl(editor) || Settings.hasUploadHandler(editor)) {
+          //   body.push(UploadTab.makeTab(editor));
+          // }
           win = editor.windowManager.open({
             title: 'Insert/edit image',
             data: data,
